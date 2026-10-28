@@ -24,6 +24,10 @@ Bloom is a polished, responsive mini online store built for the frontend assignm
 - JavaScript
 - CSS
 - Lucide React icons
+- Express
+- SQLite via better-sqlite3
+- JWT authentication
+- Vitest and Supertest
 
 ## Run locally
 
@@ -38,17 +42,31 @@ Install dependencies:
 npm install
 ```
 
-Start the development server:
+Create a local environment file:
+
+```bash
+cp .env.example .env
+```
+
+Seed the SQLite database:
+
+```bash
+npm run seed
+```
+
+Start the development server and API together:
 
 ```bash
 npm run dev
 ```
 
-Open the local URL shown in the terminal, usually:
+Open the storefront at:
 
 ```text
 http://localhost:5173
 ```
+
+The API runs at `http://localhost:3001`.
 
 ## Production build
 
@@ -63,6 +81,26 @@ Preview the production build:
 ```bash
 npm run preview
 ```
+
+## Demo account and coupon
+
+The seed command creates:
+
+- Customer: `demo@bloom.store` / `Bloom123!`
+- Admin: `admin@bloom.store` / `Admin123!`
+- Coupon: `BLOOM10` (10% off orders over $40)
+
+The demo checkout is intentionally payment-free. It validates the order on the server, atomically reduces stock, creates order items, and clears the authenticated cart.
+
+## Tests
+
+Run the five backend tests:
+
+```bash
+npm test
+```
+
+The tests cover API health, seeded products, password validation, login, and protected cart access.
 
 ## Admin dashboard
 
@@ -90,4 +128,3 @@ Open the store and click **Admin dashboard** at the bottom of the page. The dash
 ## Notes
 
 This is a frontend demonstration project. Product data and order data are stored in React state for the demo, and the checkout form does not process real payments.
-
